@@ -1,0 +1,588 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D32623962D41B4D1008D59A1 /* MegadishUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32623952D41B4D1008D59A1 /* MegadishUIApp.swift */; };
+		D32623982D41B4D1008D59A1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32623972D41B4D1008D59A1 /* ContentView.swift */; };
+		D326239A2D41B4D4008D59A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D32623992D41B4D4008D59A1 /* Assets.xcassets */; };
+		D326239D2D41B4D4008D59A1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D326239C2D41B4D4008D59A1 /* Preview Assets.xcassets */; };
+		D32623A72D41B4D4008D59A1 /* MegadishUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32623A62D41B4D4008D59A1 /* MegadishUITests.swift */; };
+		D32623B12D41B4D4008D59A1 /* MegadishUIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32623B02D41B4D4008D59A1 /* MegadishUIUITests.swift */; };
+		D32623B32D41B4D4008D59A1 /* MegadishUIUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32623B22D41B4D4008D59A1 /* MegadishUIUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D32623A32D41B4D4008D59A1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D326238A2D41B4D1008D59A1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D32623912D41B4D1008D59A1;
+			remoteInfo = MegadishUI;
+		};
+		D32623AD2D41B4D4008D59A1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D326238A2D41B4D1008D59A1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D32623912D41B4D1008D59A1;
+			remoteInfo = MegadishUI;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D32623922D41B4D1008D59A1 /* MegadishUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MegadishUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D32623952D41B4D1008D59A1 /* MegadishUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MegadishUIApp.swift; sourceTree = "<group>"; };
+		D32623972D41B4D1008D59A1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D32623992D41B4D4008D59A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D326239C2D41B4D4008D59A1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D32623A22D41B4D4008D59A1 /* MegadishUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MegadishUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D32623A62D41B4D4008D59A1 /* MegadishUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MegadishUITests.swift; sourceTree = "<group>"; };
+		D32623AC2D41B4D4008D59A1 /* MegadishUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MegadishUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D32623B02D41B4D4008D59A1 /* MegadishUIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MegadishUIUITests.swift; sourceTree = "<group>"; };
+		D32623B22D41B4D4008D59A1 /* MegadishUIUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MegadishUIUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D326238F2D41B4D1008D59A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D326239F2D41B4D4008D59A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D32623A92D41B4D4008D59A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D32623892D41B4D1008D59A1 = {
+			isa = PBXGroup;
+			children = (
+				D32623942D41B4D1008D59A1 /* MegadishUI */,
+				D32623A52D41B4D4008D59A1 /* MegadishUITests */,
+				D32623AF2D41B4D4008D59A1 /* MegadishUIUITests */,
+				D32623932D41B4D1008D59A1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D32623932D41B4D1008D59A1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D32623922D41B4D1008D59A1 /* MegadishUI.app */,
+				D32623A22D41B4D4008D59A1 /* MegadishUITests.xctest */,
+				D32623AC2D41B4D4008D59A1 /* MegadishUIUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D32623942D41B4D1008D59A1 /* MegadishUI */ = {
+			isa = PBXGroup;
+			children = (
+				D32623952D41B4D1008D59A1 /* MegadishUIApp.swift */,
+				D32623972D41B4D1008D59A1 /* ContentView.swift */,
+				D32623992D41B4D4008D59A1 /* Assets.xcassets */,
+				D326239B2D41B4D4008D59A1 /* Preview Content */,
+			);
+			path = MegadishUI;
+			sourceTree = "<group>";
+		};
+		D326239B2D41B4D4008D59A1 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				D326239C2D41B4D4008D59A1 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D32623A52D41B4D4008D59A1 /* MegadishUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D32623A62D41B4D4008D59A1 /* MegadishUITests.swift */,
+			);
+			path = MegadishUITests;
+			sourceTree = "<group>";
+		};
+		D32623AF2D41B4D4008D59A1 /* MegadishUIUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D32623B02D41B4D4008D59A1 /* MegadishUIUITests.swift */,
+				D32623B22D41B4D4008D59A1 /* MegadishUIUITestsLaunchTests.swift */,
+			);
+			path = MegadishUIUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D32623912D41B4D1008D59A1 /* MegadishUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D32623B62D41B4D4008D59A1 /* Build configuration list for PBXNativeTarget "MegadishUI" */;
+			buildPhases = (
+				D326238E2D41B4D1008D59A1 /* Sources */,
+				D326238F2D41B4D1008D59A1 /* Frameworks */,
+				D32623902D41B4D1008D59A1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MegadishUI;
+			productName = MegadishUI;
+			productReference = D32623922D41B4D1008D59A1 /* MegadishUI.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D32623A12D41B4D4008D59A1 /* MegadishUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D32623B92D41B4D4008D59A1 /* Build configuration list for PBXNativeTarget "MegadishUITests" */;
+			buildPhases = (
+				D326239E2D41B4D4008D59A1 /* Sources */,
+				D326239F2D41B4D4008D59A1 /* Frameworks */,
+				D32623A02D41B4D4008D59A1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D32623A42D41B4D4008D59A1 /* PBXTargetDependency */,
+			);
+			name = MegadishUITests;
+			productName = MegadishUITests;
+			productReference = D32623A22D41B4D4008D59A1 /* MegadishUITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D32623AB2D41B4D4008D59A1 /* MegadishUIUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D32623BC2D41B4D4008D59A1 /* Build configuration list for PBXNativeTarget "MegadishUIUITests" */;
+			buildPhases = (
+				D32623A82D41B4D4008D59A1 /* Sources */,
+				D32623A92D41B4D4008D59A1 /* Frameworks */,
+				D32623AA2D41B4D4008D59A1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D32623AE2D41B4D4008D59A1 /* PBXTargetDependency */,
+			);
+			name = MegadishUIUITests;
+			productName = MegadishUIUITests;
+			productReference = D32623AC2D41B4D4008D59A1 /* MegadishUIUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D326238A2D41B4D1008D59A1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					D32623912D41B4D1008D59A1 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					D32623A12D41B4D4008D59A1 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = D32623912D41B4D1008D59A1;
+					};
+					D32623AB2D41B4D4008D59A1 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = D32623912D41B4D1008D59A1;
+					};
+				};
+			};
+			buildConfigurationList = D326238D2D41B4D1008D59A1 /* Build configuration list for PBXProject "MegadishUI" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D32623892D41B4D1008D59A1;
+			productRefGroup = D32623932D41B4D1008D59A1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D32623912D41B4D1008D59A1 /* MegadishUI */,
+				D32623A12D41B4D4008D59A1 /* MegadishUITests */,
+				D32623AB2D41B4D4008D59A1 /* MegadishUIUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D32623902D41B4D1008D59A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D326239D2D41B4D4008D59A1 /* Preview Assets.xcassets in Resources */,
+				D326239A2D41B4D4008D59A1 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D32623A02D41B4D4008D59A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D32623AA2D41B4D4008D59A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D326238E2D41B4D1008D59A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D32623982D41B4D1008D59A1 /* ContentView.swift in Sources */,
+				D32623962D41B4D1008D59A1 /* MegadishUIApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D326239E2D41B4D4008D59A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D32623A72D41B4D4008D59A1 /* MegadishUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D32623A82D41B4D4008D59A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D32623B32D41B4D4008D59A1 /* MegadishUIUITestsLaunchTests.swift in Sources */,
+				D32623B12D41B4D4008D59A1 /* MegadishUIUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D32623A42D41B4D4008D59A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D32623912D41B4D1008D59A1 /* MegadishUI */;
+			targetProxy = D32623A32D41B4D4008D59A1 /* PBXContainerItemProxy */;
+		};
+		D32623AE2D41B4D4008D59A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D32623912D41B4D1008D59A1 /* MegadishUI */;
+			targetProxy = D32623AD2D41B4D4008D59A1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		D32623B42D41B4D4008D59A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D32623B52D41B4D4008D59A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D32623B72D41B4D4008D59A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MegadishUI/Preview Content\"";
+				DEVELOPMENT_TEAM = 57QM27P453;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = bcsoftware.MegadishUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D32623B82D41B4D4008D59A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MegadishUI/Preview Content\"";
+				DEVELOPMENT_TEAM = 57QM27P453;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = bcsoftware.MegadishUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D32623BA2D41B4D4008D59A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 57QM27P453;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = bcsoftware.MegadishUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MegadishUI.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MegadishUI";
+			};
+			name = Debug;
+		};
+		D32623BB2D41B4D4008D59A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 57QM27P453;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = bcsoftware.MegadishUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MegadishUI.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MegadishUI";
+			};
+			name = Release;
+		};
+		D32623BD2D41B4D4008D59A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 57QM27P453;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = bcsoftware.MegadishUIUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MegadishUI;
+			};
+			name = Debug;
+		};
+		D32623BE2D41B4D4008D59A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 57QM27P453;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = bcsoftware.MegadishUIUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MegadishUI;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D326238D2D41B4D1008D59A1 /* Build configuration list for PBXProject "MegadishUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D32623B42D41B4D4008D59A1 /* Debug */,
+				D32623B52D41B4D4008D59A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D32623B62D41B4D4008D59A1 /* Build configuration list for PBXNativeTarget "MegadishUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D32623B72D41B4D4008D59A1 /* Debug */,
+				D32623B82D41B4D4008D59A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D32623B92D41B4D4008D59A1 /* Build configuration list for PBXNativeTarget "MegadishUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D32623BA2D41B4D4008D59A1 /* Debug */,
+				D32623BB2D41B4D4008D59A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D32623BC2D41B4D4008D59A1 /* Build configuration list for PBXNativeTarget "MegadishUIUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D32623BD2D41B4D4008D59A1 /* Debug */,
+				D32623BE2D41B4D4008D59A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D326238A2D41B4D1008D59A1 /* Project object */;
+}
