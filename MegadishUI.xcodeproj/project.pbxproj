@@ -14,6 +14,8 @@
 		D32623A72D41B4D4008D59A1 /* MegadishUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32623A62D41B4D4008D59A1 /* MegadishUITests.swift */; };
 		D32623B12D41B4D4008D59A1 /* MegadishUIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32623B02D41B4D4008D59A1 /* MegadishUIUITests.swift */; };
 		D32623B32D41B4D4008D59A1 /* MegadishUIUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32623B22D41B4D4008D59A1 /* MegadishUIUITestsLaunchTests.swift */; };
+		D32623C42D41B759008D59A1 /* MainViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32623C32D41B759008D59A1 /* MainViewmodel.swift */; };
+		D38E3D8A2D4917DB0059CB09 /* WirelessService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38E3D892D4917DB0059CB09 /* WirelessService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,9 @@
 		D32623AC2D41B4D4008D59A1 /* MegadishUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MegadishUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D32623B02D41B4D4008D59A1 /* MegadishUIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MegadishUIUITests.swift; sourceTree = "<group>"; };
 		D32623B22D41B4D4008D59A1 /* MegadishUIUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MegadishUIUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D32623C32D41B759008D59A1 /* MainViewmodel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewmodel.swift; sourceTree = "<group>"; };
+		D32623C52D41B98E008D59A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D38E3D892D4917DB0059CB09 /* WirelessService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WirelessService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +99,9 @@
 		D32623942D41B4D1008D59A1 /* MegadishUI */ = {
 			isa = PBXGroup;
 			children = (
+				D32623C52D41B98E008D59A1 /* Info.plist */,
+				D32623C22D41B70B008D59A1 /* ViewModels */,
+				D32623BF2D41B61F008D59A1 /* Services */,
 				D32623952D41B4D1008D59A1 /* MegadishUIApp.swift */,
 				D32623972D41B4D1008D59A1 /* ContentView.swift */,
 				D32623992D41B4D4008D59A1 /* Assets.xcassets */,
@@ -125,6 +133,22 @@
 				D32623B22D41B4D4008D59A1 /* MegadishUIUITestsLaunchTests.swift */,
 			);
 			path = MegadishUIUITests;
+			sourceTree = "<group>";
+		};
+		D32623BF2D41B61F008D59A1 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D38E3D892D4917DB0059CB09 /* WirelessService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		D32623C22D41B70B008D59A1 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				D32623C32D41B759008D59A1 /* MainViewmodel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +283,8 @@
 			files = (
 				D32623982D41B4D1008D59A1 /* ContentView.swift in Sources */,
 				D32623962D41B4D1008D59A1 /* MegadishUIApp.swift in Sources */,
+				D32623C42D41B759008D59A1 /* MainViewmodel.swift in Sources */,
+				D38E3D8A2D4917DB0059CB09 /* WirelessService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,7 +371,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -399,7 +425,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -420,6 +446,9 @@
 				DEVELOPMENT_TEAM = 57QM27P453;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MegadishUI/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -449,6 +478,9 @@
 				DEVELOPMENT_TEAM = 57QM27P453;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MegadishUI/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
