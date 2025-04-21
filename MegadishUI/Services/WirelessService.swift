@@ -79,6 +79,28 @@ class WirelessService: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
         }
     }
     
+    // Add this method to the WirelessService class
+
+    func shutdownBluetooth() {
+        guard let ssidChar = selectedSsidCharacteristic else {
+            print("Error: selectedSsidCharacteristic not found")
+            return
+        }
+        
+        let command = "CLOSEBTTASK"
+        print("Sending Bluetooth shutdown command: \(command)")
+        peripheral?.writeValue(command.data(using: .utf8)!,
+                             for: ssidChar,
+                             type: .withResponse)
+        
+        // We're done with this peripheral now
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            if let peripheral = self?.peripheral {
+                self?.centralManager.cancelPeripheralConnection(peripheral)
+            }
+        }
+    }
+    
     // MARK: - WiFi Methods
       
     func scanForWiFiNetworks() {

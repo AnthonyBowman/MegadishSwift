@@ -46,6 +46,11 @@ class MainViewModel: ObservableObject {
         }
     }
     
+    // Add to MainViewModel if needed
+    func shutdownAndDisconnect() {
+        wirelessService.shutdownBluetooth()
+    }
+    
     func startBluetoothScan() {
         statusMessage = "Scanning for Megadish devices..."
         bluetoothDevices.removeAll()
