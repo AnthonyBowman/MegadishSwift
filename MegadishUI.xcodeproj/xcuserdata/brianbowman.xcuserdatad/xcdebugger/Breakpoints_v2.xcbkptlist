@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "9CC0E081-6BF0-424B-926A-6529E2AB8A93"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3E1F4B27-3618-40E2-B40E-219292285B2E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MegadishUI/Services/WirelessService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "scanForWiFiNetworks()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3E1F4B27-3618-40E2-B40E-219292285B2E - b4c061c47997b529"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MegadishUI.WirelessService.scanForWiFiNetworks() -&gt; ()"
+                  moduleName = "MegadishUI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/brianbowman/Documents/MegadishSwift/MegadishUI/Services/WirelessService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "152"
+                  endingLineNumber = "152"
+                  offsetFromSymbolStart = "828">
+               </Location>
+               <Location
+                  uuid = "3E1F4B27-3618-40E2-B40E-219292285B2E - b4c061c47997b529"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MegadishUI.WirelessService.scanForWiFiNetworks() -&gt; ()"
+                  moduleName = "MegadishUI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/brianbowman/Documents/MegadishSwift/MegadishUI/Services/WirelessService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "152"
+                  endingLineNumber = "152"
+                  offsetFromSymbolStart = "2332">
+               </Location>
+               <Location
+                  uuid = "3E1F4B27-3618-40E2-B40E-219292285B2E - b4c061c47997b529"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MegadishUI.WirelessService.scanForWiFiNetworks() -&gt; ()"
+                  moduleName = "MegadishUI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/brianbowman/Documents/MegadishSwift/MegadishUI/Services/WirelessService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "152"
+                  endingLineNumber = "152"
+                  offsetFromSymbolStart = "636">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C74244B4-5BFF-4074-85F0-8EB67D30C722"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MegadishUI/Services/WirelessService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "493"
+            endingLineNumber = "493"
+            landmarkName = "peripheral(_:didDiscoverCharacteristicsFor:error:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

@@ -16,6 +16,8 @@
 		D32623B32D41B4D4008D59A1 /* MegadishUIUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32623B22D41B4D4008D59A1 /* MegadishUIUITestsLaunchTests.swift */; };
 		D32623C42D41B759008D59A1 /* MainViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32623C32D41B759008D59A1 /* MainViewmodel.swift */; };
 		D38E3D8A2D4917DB0059CB09 /* WirelessService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38E3D892D4917DB0059CB09 /* WirelessService.swift */; };
+		DA021CDD2DEDB9BA00793046 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA021CDC2DEDB9BA00793046 /* SettingsViewModel.swift */; };
+		DA021CDF2DEDBA0B00793046 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA021CDE2DEDBA0B00793046 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		D32623C32D41B759008D59A1 /* MainViewmodel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewmodel.swift; sourceTree = "<group>"; };
 		D32623C52D41B98E008D59A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D38E3D892D4917DB0059CB09 /* WirelessService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WirelessService.swift; sourceTree = "<group>"; };
+		DA021CDC2DEDB9BA00793046 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		DA021CDE2DEDBA0B00793046 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,7 @@
 				D32623972D41B4D1008D59A1 /* ContentView.swift */,
 				D32623992D41B4D4008D59A1 /* Assets.xcassets */,
 				D326239B2D41B4D4008D59A1 /* Preview Content */,
+				DA021CDE2DEDBA0B00793046 /* SettingsView.swift */,
 			);
 			path = MegadishUI;
 			sourceTree = "<group>";
@@ -147,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				D32623C32D41B759008D59A1 /* MainViewmodel.swift */,
+				DA021CDC2DEDB9BA00793046 /* SettingsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -281,8 +287,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA021CDD2DEDB9BA00793046 /* SettingsViewModel.swift in Sources */,
 				D32623982D41B4D1008D59A1 /* ContentView.swift in Sources */,
 				D32623962D41B4D1008D59A1 /* MegadishUIApp.swift in Sources */,
+				DA021CDF2DEDBA0B00793046 /* SettingsView.swift in Sources */,
 				D32623C42D41B759008D59A1 /* MainViewmodel.swift in Sources */,
 				D38E3D8A2D4917DB0059CB09 /* WirelessService.swift in Sources */,
 			);

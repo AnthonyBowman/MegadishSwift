@@ -2,31 +2,42 @@ import CoreBluetooth
 import Foundation
 
 class WirelessService: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
-    // Service UUID
-    static let MD_CONFIG_SERVICE_UUID = CBUUID(string: "940b7e61-f92a-4e26-aa45-d20b567fda00")
-    
-    // Characteristic UUIDs
-    static let MD_SSID_LIST_CHAR_UUID = CBUUID(string: "9e406e3e-a7ad-4c6d-87a2-250f34c54382")
-    static let MD_SSID_SEL_CHAR_UUID = CBUUID(string: "9f406e3e-a7ad-4c6d-87a2-250f34c54383")
-    static let MD_PWORD_CHAR_UUID = CBUUID(string: "a0406e3e-a7ad-4c6d-87a2-250f34c54384")
-    static let MD_CONNECTION_STATUS_CHAR_UUID = CBUUID(string: "a1406e3e-a7ad-4c6d-87a2-250f34c54385")
+    // Service UUID (original correct byte order)
+    static let MD_SERVICE_UUID = CBUUID(string: "00da7f56-0bd2-45aa-264e-2af9617e0b94")
+     
+    // Characteristic UUIDs (original correct byte order)
+    // Replace your current UUID definitions with these uppercase versions:
+
+    static let OUTPUT_DATA_CHAR_UUID = CBUUID(string: "8243C534-0F25-A287-6D4C-ADA73E6E409E")
+    static let INPUT_COMMAND_CHAR_UUID = CBUUID(string: "8343C534-0F25-A287-6D4C-ADA73E6E409F")
+    static let INPUT_DATA_CHAR_UUID = CBUUID(string: "8443C534-0F25-A287-6D4C-ADA73E6E40A0")
+    static let OUTPUT_COMMAND_CHAR_UUID = CBUUID(string: "8543C534-0F25-A287-6D4C-ADA73E6E40A1")
+  
     
     private var centralManager: CBCentralManager!
     private var peripheral: CBPeripheral?
-    private var ssidListCharacteristic: CBCharacteristic?
-    private var selectedSsidCharacteristic: CBCharacteristic?
-    private var passwordCharacteristic: CBCharacteristic?
-    private var connectionStatusCharacteristic: CBCharacteristic?
+    
+    // Characteristic references
+    private var outputDataCharacteristic: CBCharacteristic?
+    private var inputCommandCharacteristic: CBCharacteristic?
+    private var inputDataCharacteristic: CBCharacteristic?
+    private var outputCommandCharacteristic: CBCharacteristic?
+    
+    // Response handlers for async operations
     private var connectionStatusReadHandler: ((CBPeripheral, CBCharacteristic, Error?) -> Void)?
+    private var settingsReadHandler: ((CBPeripheral, CBCharacteristic, Error?) -> Void)?
+    private var networksReadHandler: ((CBPeripheral, CBCharacteristic, Error?) -> Void)?
   
     // Callbacks
     var onDeviceDiscovered: ((CBPeripheral, [String: Any]) -> Void)?
     var onConnectionStatusChanged: ((Bool) -> Void)?
     var onWifiNetworksUpdated: (([ScannedNetwork]) -> Void)?
     var onWifiStatusChanged: ((String) -> Void)?
+    var onSettingsLoaded: ((DeviceSettings) -> Void)?
+    var onSavedNetworksLoaded: (([String]) -> Void)?
     
-    // Debug flag
-    private var isDebugMode = true
+    // Debug flag - when true, scans all devices; when false, pre-filters by service UUID
+    private var isDebugMode = false
     
     struct ScannedNetwork: Identifiable {
         let id = UUID()
@@ -35,9 +46,43 @@ class WirelessService: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
         let primaryChannel: Int
     }
     
+    struct DeviceSettings {
+        var accessPointName: String
+        var accessPointPassword: String
+        var wifiChannel: Int
+        var transmitPower: Int
+        var firmwareVersion: String
+        var deviceID: String
+        
+        init() {
+            self.accessPointName = "Megadish"
+            self.accessPointPassword = "test1234"
+            self.wifiChannel = 8
+            self.transmitPower = 3
+            self.firmwareVersion = "1.0.0"
+            self.deviceID = "MD-000000000000"
+        }
+        
+        init(accessPointName: String, accessPointPassword: String, wifiChannel: Int, transmitPower: Int, firmwareVersion: String, deviceID: String) {
+            self.accessPointName = accessPointName
+            self.accessPointPassword = accessPointPassword
+            self.wifiChannel = wifiChannel
+            self.transmitPower = transmitPower
+            self.firmwareVersion = firmwareVersion
+            self.deviceID = deviceID
+        }
+    }
+    
     override init() {
         super.init()
         centralManager = CBCentralManager(delegate: self, queue: nil)
+    }
+    
+    // MARK: - Debug Control
+    
+    func setDebugMode(_ enabled: Bool) {
+        isDebugMode = enabled
+        print("Debug mode \(enabled ? "enabled" : "disabled")")
     }
     
     // MARK: - Bluetooth Methods
@@ -49,12 +94,14 @@ class WirelessService: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
         }
         
         if isDebugMode {
-            print("Starting scan for all Bluetooth devices...")
+            // Debug mode: Scan all devices, then filter in discovery
+            print("Starting scan for all Bluetooth devices (debug mode)...")
             centralManager.scanForPeripherals(withServices: nil,
                                             options: [CBCentralManagerScanOptionAllowDuplicatesKey: false])
         } else {
-            print("Starting scan for Megadish devices...")
-            centralManager.scanForPeripherals(withServices: [WirelessService.MD_CONFIG_SERVICE_UUID],
+            // Production mode: Pre-filter by scanning only for devices advertising our service UUID
+            print("Starting scan for devices with Megadish service UUID...")
+            centralManager.scanForPeripherals(withServices: [WirelessService.MD_SERVICE_UUID],
                                             options: [CBCentralManagerScanOptionAllowDuplicatesKey: false])
         }
     }
@@ -78,22 +125,20 @@ class WirelessService: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
             self.peripheral = nil
         }
     }
-    
-    // Add this method to the WirelessService class
 
     func shutdownBluetooth() {
-        guard let ssidChar = selectedSsidCharacteristic else {
-            print("Error: selectedSsidCharacteristic not found")
+        guard let inputCommandChar = inputCommandCharacteristic else {
+            print("Error: inputCommandCharacteristic not found")
             return
         }
         
         let command = "CLOSEBTTASK"
         print("Sending Bluetooth shutdown command: \(command)")
         peripheral?.writeValue(command.data(using: .utf8)!,
-                             for: ssidChar,
+                             for: inputCommandChar,
                              type: .withResponse)
         
-        // We're done with this peripheral now
+        // Disconnect after a brief delay
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
             if let peripheral = self?.peripheral {
                 self?.centralManager.cancelPeripheralConnection(peripheral)
@@ -105,50 +150,70 @@ class WirelessService: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
       
     func scanForWiFiNetworks() {
         print("Starting WiFi network scan...")
-        guard let selCharacteristic = selectedSsidCharacteristic,
-              let listCharacteristic = ssidListCharacteristic else {
+        guard let inputCommandChar = inputCommandCharacteristic,
+              let outputDataChar = outputDataCharacteristic else {
             print("Error: characteristics not found")
             return
         }
         
-        // Send scan command
+        // Send GETSSIDLIST command
         let command = "GETSSIDLIST"
         print("Sending GETSSIDLIST command...")
         peripheral?.writeValue(command.data(using: .utf8)!,
-                             for: selCharacteristic,
+                             for: inputCommandChar,
                              type: .withResponse)
         
-        // Wait a moment then read results
+        // Wait a moment then read results from OUTPUT_DATA
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
             print("Reading scan results...")
-            self?.peripheral?.readValue(for: listCharacteristic)
+            self?.peripheral?.readValue(for: outputDataChar)
         }
     }
     
     func connect(to ssid: String, password: String) async throws -> Bool {
-        guard let ssidChar = selectedSsidCharacteristic,
-              let passwordChar = passwordCharacteristic,
-              let statusChar = connectionStatusCharacteristic else {
+        guard let inputDataChar = inputDataCharacteristic,
+              let inputCommandChar = inputCommandCharacteristic,
+              let outputCommandChar = outputCommandCharacteristic else {
             throw WirelessError.characteristicsNotFound
         }
         
         print("Connecting to WiFi network: \(ssid)")
         
-        // Write SSID
+        // Step 1: Send SSID data, then SETSELSSID command
         peripheral?.writeValue(ssid.data(using: .utf8)!,
-                             for: ssidChar,
+                             for: inputDataChar,
                              type: .withResponse)
         
-        // Write password
+        try await Task.sleep(nanoseconds: 100_000_000) // 100ms
+        
+        peripheral?.writeValue("SETSELSSID".data(using: .utf8)!,
+                             for: inputCommandChar,
+                             type: .withResponse)
+        
+        try await Task.sleep(nanoseconds: 100_000_000) // 100ms
+        
+        // Step 2: Send password data, then STOREPWORD command
         peripheral?.writeValue(password.data(using: .utf8)!,
-                             for: passwordChar,
+                             for: inputDataChar,
                              type: .withResponse)
         
-        // Give a brief moment for connection attempt
+        try await Task.sleep(nanoseconds: 100_000_000) // 100ms
+        
+        peripheral?.writeValue("STOREPWORD".data(using: .utf8)!,
+                             for: inputCommandChar,
+                             type: .withResponse)
+        
+        try await Task.sleep(nanoseconds: 100_000_000) // 100ms
+        
+        // Step 3: Send CONNECTWIFI command
+        peripheral?.writeValue("CONNECTWIFI".data(using: .utf8)!,
+                             for: inputCommandChar,
+                             type: .withResponse)
+        
+        // Step 4: Wait and check connection status
         try await Task.sleep(nanoseconds: 1_000_000_000) // 1 second
         
-        // Read connection status
-        peripheral?.readValue(for: statusChar)
+        peripheral?.readValue(for: outputCommandChar)
         
         // Wait for the read response using a continuation
         return try await withCheckedThrowingContinuation { continuation in
@@ -173,22 +238,183 @@ class WirelessService: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
             self.connectionStatusReadHandler = handler
         }
     }
+    
+    // MARK: - Settings Methods
+    
+    func readSettings() async throws -> DeviceSettings {
+        guard let inputCommandChar = inputCommandCharacteristic,
+              let outputDataChar = outputDataCharacteristic else {
+            throw WirelessError.characteristicsNotFound
+        }
+        
+        print("Reading device settings...")
+        
+        // Send READSETTINGS command
+        peripheral?.writeValue("READSETTINGS".data(using: .utf8)!,
+                             for: inputCommandChar,
+                             type: .withResponse)
+        
+        // Wait and read results
+        try await Task.sleep(nanoseconds: 500_000_000) // 500ms
+        peripheral?.readValue(for: outputDataChar)
+        
+        // Wait for the read response
+        return try await withCheckedThrowingContinuation { continuation in
+            let handler: ((CBPeripheral, CBCharacteristic, Error?) -> Void) = { [weak self] _, characteristic, error in
+                self?.settingsReadHandler = nil
+                if let error = error {
+                    continuation.resume(throwing: error)
+                    return
+                }
+                
+                guard let data = characteristic.value,
+                      let settingsString = String(data: data, encoding: .utf8) else {
+                    continuation.resume(throwing: WirelessError.invalidResponse)
+                    return
+                }
+                
+                print("Settings received: '\(settingsString)'")
+                
+                // Parse settings: "ap_name|ap_password|ap_channel|tx_power|firmware_version|device_id"
+                let parts = settingsString.split(separator: "|")
+                var settings = DeviceSettings()
+                
+                if parts.count >= 4 {
+                    settings.accessPointName = String(parts[0])
+                    settings.accessPointPassword = String(parts[1])
+                    settings.wifiChannel = Int(parts[2]) ?? 8
+                    settings.transmitPower = Int(parts[3]) ?? 3
+                    
+                    if parts.count > 4 {
+                        settings.firmwareVersion = String(parts[4])
+                    }
+                    if parts.count > 5 {
+                        settings.deviceID = String(parts[5])
+                    }
+                }
+                
+                continuation.resume(returning: settings)
+            }
+            
+            self.settingsReadHandler = handler
+        }
+    }
+    
+    func writeSettings(_ settings: DeviceSettings) async throws {
+        guard let inputDataChar = inputDataCharacteristic,
+              let inputCommandChar = inputCommandCharacteristic else {
+            throw WirelessError.characteristicsNotFound
+        }
+        
+        // Create delimited settings string: ap_name|ap_password|ap_channel|tx_power
+        let settingsString = "\(settings.accessPointName)|\(settings.accessPointPassword)|\(settings.wifiChannel)|\(settings.transmitPower)"
+        
+        print("Sending settings: \(settingsString)")
+        
+        // Send settings data first, then WRITESETTINGS command
+        peripheral?.writeValue(settingsString.data(using: .utf8)!,
+                             for: inputDataChar,
+                             type: .withResponse)
+        
+        try await Task.sleep(nanoseconds: 100_000_000) // 100ms
+        
+        peripheral?.writeValue("WRITESETTINGS".data(using: .utf8)!,
+                             for: inputCommandChar,
+                             type: .withResponse)
+    }
+    
+    func getSavedNetworks() async throws -> [String] {
+        guard let inputCommandChar = inputCommandCharacteristic,
+              let outputDataChar = outputDataCharacteristic else {
+            throw WirelessError.characteristicsNotFound
+        }
+        
+        print("Getting saved networks from device...")
+        
+        // Send GETNETWORKS command
+        peripheral?.writeValue("GETNETWORKS".data(using: .utf8)!,
+                             for: inputCommandChar,
+                             type: .withResponse)
+        
+        // Wait and read results
+        try await Task.sleep(nanoseconds: 500_000_000) // 500ms
+        peripheral?.readValue(for: outputDataChar)
+        
+        // Wait for the read response
+        return try await withCheckedThrowingContinuation { continuation in
+            let handler: ((CBPeripheral, CBCharacteristic, Error?) -> Void) = { [weak self] _, characteristic, error in
+                self?.networksReadHandler = nil
+                if let error = error {
+                    print("Error reading saved networks: \(error)")
+                    continuation.resume(throwing: error)
+                    return
+                }
+                
+                guard let data = characteristic.value,
+                      let networksString = String(data: data, encoding: .utf8) else {
+                    print("No data received for saved networks")
+                    continuation.resume(returning: [])
+                    return
+                }
+                
+                print("Raw networks data received: '\(networksString)'")
+                
+                if networksString.isEmpty || networksString == "No saved networks" {
+                    print("No saved networks found")
+                    continuation.resume(returning: [])
+                    return
+                }
+                
+                // Parse delimited string
+                let networks = networksString.split(separator: ";")
+                    .map { String($0.trimmingCharacters(in: .whitespaces)) }
+                    .filter { !$0.isEmpty }
+                
+                print("Parsed \(networks.count) saved networks: \(networks)")
+                continuation.resume(returning: networks)
+            }
+            
+            self.networksReadHandler = handler
+        }
+    }
+    
+    func forgetNetwork(_ ssid: String) async throws {
+        guard let inputDataChar = inputDataCharacteristic,
+              let inputCommandChar = inputCommandCharacteristic else {
+            throw WirelessError.characteristicsNotFound
+        }
+        
+        print("Forgetting network: \(ssid)")
+        
+        // Send SSID data first, then FORGETNETWORK command
+        peripheral?.writeValue(ssid.data(using: .utf8)!,
+                             for: inputDataChar,
+                             type: .withResponse)
+        
+        try await Task.sleep(nanoseconds: 100_000_000) // 100ms
+        
+        peripheral?.writeValue("FORGETNETWORK".data(using: .utf8)!,
+                             for: inputCommandChar,
+                             type: .withResponse)
+    }
 
     enum WirelessError: Error {
         case characteristicsNotFound
         case connectionFailed
+        case invalidResponse
+        case settingsValidationFailed
     }
     
     func disconnectWiFi(shutdownAP: Bool = false) {
-        guard let ssidChar = selectedSsidCharacteristic else {
-            print("Error: selectedSsidCharacteristic not found")
+        guard let inputCommandChar = inputCommandCharacteristic else {
+            print("Error: inputCommandCharacteristic not found")
             return
         }
         
         let command = shutdownAP ? "SHUTDOWNALL" : "DISCONNECT"
         print("Sending WiFi disconnect command: \(command)")
         peripheral?.writeValue(command.data(using: .utf8)!,
-                             for: ssidChar,
+                             for: inputCommandChar,
                              type: .withResponse)
     }
     
@@ -218,23 +444,29 @@ class WirelessService: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
         print("Discovered device: \(peripheral.name ?? "Unknown") with RSSI: \(RSSI)")
         
         if isDebugMode {
+            // Debug mode: Show all discovered devices
             onDeviceDiscovered?(peripheral, advertisementData)
             print("Advertisement data:")
             for (key, value) in advertisementData {
                 print("\(key): \(value)")
             }
         } else {
+            // Production mode: Since we pre-filtered by service UUID, any device discovered here
+            // should be a valid Megadish device, but let's double-check for safety
             if let serviceUUIDs = advertisementData[CBAdvertisementDataServiceUUIDsKey] as? [CBUUID],
-               serviceUUIDs.contains(WirelessService.MD_CONFIG_SERVICE_UUID) {
+               serviceUUIDs.contains(WirelessService.MD_SERVICE_UUID) {
                 print("Found Megadish device!")
                 onDeviceDiscovered?(peripheral, advertisementData)
+            } else {
+                // This should rarely happen in pre-filtered mode, but log for debugging
+                print("Device discovered without expected service UUID (this shouldn't happen in pre-filtered mode)")
             }
         }
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         print("Connected to peripheral: \(peripheral.name ?? "Unknown")")
-        peripheral.discoverServices([WirelessService.MD_CONFIG_SERVICE_UUID])
+        peripheral.discoverServices([WirelessService.MD_SERVICE_UUID])
         onConnectionStatusChanged?(true)
     }
     
@@ -258,30 +490,45 @@ class WirelessService: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
         guard let characteristics = service.characteristics else { return }
         
         for characteristic in characteristics {
+            print("Discovered characteristic: \(characteristic.uuid)")
             switch characteristic.uuid {
-            case WirelessService.MD_SSID_LIST_CHAR_UUID:
-                ssidListCharacteristic = characteristic
+            case WirelessService.OUTPUT_DATA_CHAR_UUID:
+                outputDataCharacteristic = characteristic
                 peripheral.setNotifyValue(true, for: characteristic)
-            case WirelessService.MD_SSID_SEL_CHAR_UUID:
-                selectedSsidCharacteristic = characteristic
-            case WirelessService.MD_PWORD_CHAR_UUID:
-                passwordCharacteristic = characteristic
-            case WirelessService.MD_CONNECTION_STATUS_CHAR_UUID:
-                connectionStatusCharacteristic = characteristic
+            case WirelessService.INPUT_COMMAND_CHAR_UUID:
+                inputCommandCharacteristic = characteristic
+            case WirelessService.INPUT_DATA_CHAR_UUID:
+                inputDataCharacteristic = characteristic
+            case WirelessService.OUTPUT_COMMAND_CHAR_UUID:
+                outputCommandCharacteristic = characteristic
                 peripheral.setNotifyValue(true, for: characteristic)
             default:
                 break
             }
         }
+        
+        print("All characteristics discovered and configured")
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        if characteristic.uuid == WirelessService.MD_CONNECTION_STATUS_CHAR_UUID,
-                 let handler = connectionStatusReadHandler {
-                  // If we have a handler, this is a response to our read request
-                  handler(peripheral, characteristic, error)
-                  return
-              }
+        // Handle specific read response handlers first (these take priority)
+        if characteristic.uuid == WirelessService.OUTPUT_COMMAND_CHAR_UUID,
+           let handler = connectionStatusReadHandler {
+            handler(peripheral, characteristic, error)
+            return
+        }
+        
+        if characteristic.uuid == WirelessService.OUTPUT_DATA_CHAR_UUID,
+           let handler = settingsReadHandler {
+            handler(peripheral, characteristic, error)
+            return
+        }
+        
+        if characteristic.uuid == WirelessService.OUTPUT_DATA_CHAR_UUID,
+           let handler = networksReadHandler {
+            handler(peripheral, characteristic, error)
+            return
+        }
         
         if let error = error {
             print("Error updating characteristic value: \(error)")
@@ -297,9 +544,9 @@ class WirelessService: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate 
         print("Value: \(stringValue)")
         
         switch characteristic.uuid {
-        case WirelessService.MD_SSID_LIST_CHAR_UUID:
+        case WirelessService.OUTPUT_DATA_CHAR_UUID:
             handleWiFiScanResults(stringValue)
-        case WirelessService.MD_CONNECTION_STATUS_CHAR_UUID:
+        case WirelessService.OUTPUT_COMMAND_CHAR_UUID:
             onWifiStatusChanged?(stringValue)
         default:
             break
